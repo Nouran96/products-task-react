@@ -29,9 +29,9 @@ class ProductsList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  products: state.products,
-  fetching: state.fetching,
-  error: state.error,
+  products: state.productsState.products,
+  fetching: state.productsState.fetching,
+  error: state.productsState.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({

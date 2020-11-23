@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import "./ProductCard.scss";
+import { createAddProductToOrderAction } from "../../store/actions/order";
+import { connect } from "react-redux";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onAddingToCart }) => {
   return (
     <Link to="/" className="product-card d-flex m-3">
       <div className="card flex-grow-1">
@@ -21,11 +23,20 @@ const ProductCard = ({ product }) => {
 
             <p className="card-text">{product.category}</p>
           </div>
-          <button className="btn btn-primary">Add To Cart</button>
+          <button
+            className="btn btn-primary"
+            onClick={() => onAddingToCart(product.id)}
+          >
+            Add To Cart
+          </button>
         </div>
       </div>
     </Link>
   );
 };
 
-export default ProductCard;
+const mapDispatchToProps = (dispatch) => ({
+  onAddingToCart: (id) => dispatch(createAddProductToOrderAction(id)),
+});
+
+export default connect(null, mapDispatchToProps)(ProductCard);
