@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 const ProductCard = ({ product, onAddingToCart }) => {
   return (
-    <Link to="/" className="product-card d-flex m-3">
+    <Link to={`/products/${product.id}`} className="product-card d-flex m-3">
       <div className="card flex-grow-1">
         <img
           className="card-img-top img-fluid product-image p-2"

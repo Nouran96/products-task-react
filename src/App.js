@@ -1,10 +1,10 @@
 import "./App.scss";
-import ProductsList from "./containers/ProductsList/ProductsList";
+import Routes from "./routes/Routes";
 
 function App() {
   return (
     <div className="App">
-      <ProductsList />
+      <Routes />
     </div>
   );
 }
