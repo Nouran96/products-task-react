@@ -14,17 +14,15 @@ const INITIAL_STATE = {
 };
 
 const addProducts = (state, action) => ({
+  ...state,
   products: [...action.payload.products],
-  product: { ...state.product },
   fetching: false,
-  error: null,
 });
 
 const addSingleProduct = (state, action) => ({
-  products: [...state.products],
+  ...state,
   product: { ...action.payload.product },
   fetching: false,
-  error: null,
 });
 
 const productsReducer = (state = INITIAL_STATE, action) => {
@@ -32,15 +30,12 @@ const productsReducer = (state = INITIAL_STATE, action) => {
     case PRODUCTS_FETCH:
     case SINGLE_PRODUCT_FETCH:
       return {
-        products: [...state.products],
-        product: { ...state.product },
+        ...state,
         fetching: true,
-        error: null,
       };
     case PRODUCTS_FETCH_ERROR:
       return {
-        products: [],
-        product: {},
+        ...state,
         fetching: false,
         error: action.payload.error,
       };

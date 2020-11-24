@@ -1,0 +1,11 @@
+.product-image {
+  height: var(--product-details-image-height);
+}
+
+.product-body {
+  max-width: var(--product-details-body-width);
+
+  .product-price {
+    color: var(--product-price-color);
+  }
+}
