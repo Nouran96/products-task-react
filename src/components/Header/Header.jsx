@@ -11,6 +11,7 @@ import {
   createDecrementQuantityAction,
   createDeleteProductFromOrderAction,
 } from "../../store/actions/order";
+import { Link } from "react-router-dom";
 
 const Header = ({
   selectedProducts,
@@ -20,9 +21,9 @@ const Header = ({
 }) => {
   return (
     <nav className="navbar navbar-light bg-light justify-content-between">
-      <a className="navbar-brand" href="#">
+      <Link className="navbar-brand" to="/">
         Products List
-      </a>
+      </Link>
 
       <ul className="navbar-nav flex-row">
         <Dropdown className="mr-3">

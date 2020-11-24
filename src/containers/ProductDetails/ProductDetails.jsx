@@ -1,27 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createSingleProductFetchAction } from "../../store/actions/products";
-import {
-  createIncrementQuantityAction,
-  createDecrementQuantityAction,
-} from "../../store/actions/order";
+import { createAddProductToOrderAction } from "../../store/actions/order";
 import { getProductQuantity } from "../../store/selectors/order";
 import "./ProductDetails.scss";
 
 class ProductDetails extends Component {
+  state = {
+    quantity: 0,
+  };
+
   componentDidMount() {
     this.props.getProduct(this.props.match.params.id);
+    this.setState({ quantity: this.props.quantity });
   }
 
+  incrementQuantity = () => {
+    this.setState({ quantity: ++this.state.quantity });
+  };
+
+  decrementQuantity = () => {
+    this.setState({ quantity: --this.state.quantity });
+  };
+
   render() {
-    const {
-      product,
-      quantity,
-      fetching,
-      error,
-      incrementQuantity,
-      decrementQuantity,
-    } = this.props;
+    const { product, fetching, error, addProductToCart } = this.props;
     return (
       <div className="container mt-5">
         {fetching ? (
@@ -48,20 +51,30 @@ class ProductDetails extends Component {
                 <div className="product-quantity-container d-flex align-items-baseline">
                   <h5 className="mr-3">Quantity: </h5>
                   <button
-                    onClick={() => incrementQuantity(product.id)}
+                    onClick={() => this.incrementQuantity()}
                     className="quantity-btn btn btn-dark btn-sm mr-3"
                   >
                     +
                   </button>
-                  <span className="product-quantity mr-3">{quantity}</span>
+                  <span className="product-quantity mr-3">
+                    {this.state.quantity}
+                  </span>
                   <button
-                    onClick={() => decrementQuantity(product.id)}
+                    onClick={() => this.decrementQuantity()}
                     className="quantity-btn btn btn-dark btn-sm mr-3"
                   >
                     -
                   </button>
                 </div>
-                <button className="btn btn-primary">Add To Cart</button>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => {
+                    product.quantity = this.state.quantity;
+                    addProductToCart(product);
+                  }}
+                >
+                  Add To Cart
+                </button>
               </div>
             </div>
           </div>
@@ -82,8 +95,8 @@ const mapStateToProps = ({ productsState, orderState }, props) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getProduct: (id) => dispatch(createSingleProductFetchAction(id)),
-  incrementQuantity: (id) => dispatch(createIncrementQuantityAction(id)),
-  decrementQuantity: (id) => dispatch(createDecrementQuantityAction(id)),
+  addProductToCart: (product) =>
+    dispatch(createAddProductToOrderAction(product)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);

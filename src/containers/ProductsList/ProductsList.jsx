@@ -11,7 +11,7 @@ class ProductsList extends Component {
   render() {
     const { products, fetching, error } = this.props;
     return (
-      <div className="container-fluid d-flex flex-wrap justify-content-center">
+      <div className="container-fluid mt-5 d-flex flex-wrap justify-content-center">
         {fetching ? (
           <p className="text-center">Fetching...</p>
         ) : error ? (

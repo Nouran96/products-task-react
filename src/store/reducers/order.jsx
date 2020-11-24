@@ -9,11 +9,21 @@ const INITIAL_STATE = {
   products: JSON.parse(localStorage.getItem("cartProducts")) || [],
 };
 
+// Add Product
 const addProductToOrder = (state, action) => {
-  const newProducts = [
-    ...state.products.filter((pro) => pro.id !== action.payload.product.id),
-    { ...action.payload.product, quantity: 1 },
-  ];
+  let newProducts;
+
+  if (action.payload.product.quantity) {
+    newProducts = [
+      ...state.products.filter((pro) => pro.id !== action.payload.product.id),
+      { ...action.payload.product },
+    ];
+  } else {
+    newProducts = [
+      ...state.products.filter((pro) => pro.id !== action.payload.product.id),
+      { ...action.payload.product, quantity: 1 },
+    ];
+  }
 
   localStorage.setItem("cartProducts", JSON.stringify(newProducts));
 
@@ -22,12 +32,14 @@ const addProductToOrder = (state, action) => {
   };
 };
 
+// Delete Product
 const deleteProductFromOrder = (state, action) => ({
   products: state.products.filter(
     (product) => product.id !== action.payload.id
   ),
 });
 
+// Increment Product
 const incrementQuantity = (state, action) => {
   const product = state.products.find(
     (product) => product.id === action.payload.id
@@ -50,6 +62,7 @@ const incrementQuantity = (state, action) => {
   };
 };
 
+// Decrement Product
 const decrementQuantity = (state, action) => {
   const product = state.products.find(
     (product) => product.id === action.payload.id
