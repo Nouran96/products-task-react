@@ -38,12 +38,11 @@
       .product-title {
         white-space: normal;
       }
+    }
 
-      .buttons-container {
-        .quantity-btn {
-          min-width: var(--quantity-btn-width);
-        }
-      }
+    .review-order-btn {
+      font-size: 1.1em;
+      font-weight: bold;
     }
   }
 }

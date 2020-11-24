@@ -1,6 +1,5 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import Col from "react-bootstrap/Col";
 import avatar from "../../assets/images/avatar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -64,6 +63,14 @@ const Header = ({
                     </div>
                   </div>
                 ))}
+                <div className="px-4 py-3">
+                  <Link
+                    to="/order"
+                    className="btn btn-dark btn-sm w-100 review-order-btn"
+                  >
+                    Review Order
+                  </Link>
+                </div>
               </React.Fragment>
             ) : (
               <Dropdown.Header className="text-center">

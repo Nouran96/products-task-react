@@ -5,18 +5,9 @@
 .product-body {
   max-width: var(--product-details-body-width);
 
-  .product-price {
-    color: var(--secondary-color);
-  }
-
   .product-quantity-container {
-    .product-quantity,
-    .quantity-btn {
+    .product-quantity {
       font-size: 1.2em;
-    }
-
-    .quantity-btn {
-      min-width: var(--quantity-btn-width);
     }
   }
 }
