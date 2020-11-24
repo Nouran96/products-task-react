@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import "./ProductCard.scss";
 import { createAddProductToOrderAction } from "../../store/actions/order";
+import { isProductInCart } from "../../store/selectors/order";
 import { connect } from "react-redux";
 
-const ProductCard = ({ product, onAddingToCart }) => {
+const ProductCard = ({ product, onAddingToCart, addedToCart }) => {
+  const handleClick = (e) => {
+    e.preventDefault();
+    onAddingToCart(product.id);
+  };
+
   return (
     <Link to={`/products/${product.id}`} className="product-card d-flex m-3">
       <div className="card flex-grow-1">
@@ -25,7 +31,8 @@ const ProductCard = ({ product, onAddingToCart }) => {
           </div>
           <button
             className="btn btn-primary"
-            onClick={() => onAddingToCart(product.id)}
+            onClick={handleClick}
+            disabled={addedToCart}
           >
             Add To Cart
           </button>
@@ -35,8 +42,12 @@ const ProductCard = ({ product, onAddingToCart }) => {
   );
 };
 
+const mapStateToProps = (state, props) => ({
+  addedToCart: isProductInCart(state, props.product.id),
+});
+
 const mapDispatchToProps = (dispatch) => ({
   onAddingToCart: (id) => dispatch(createAddProductToOrderAction(id)),
 });
 
-export default connect(null, mapDispatchToProps)(ProductCard);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);

@@ -1,11 +1,13 @@
 const { ADD_PRODUCT_TO_ORDER } = require("../types/order");
 
 const INITIAL_STATE = {
-  products: [],
+  products: localStorage.getItem("cartProducts") || [],
 };
 
 const addProductToOrder = (state, action) => {
   const newProducts = [...state.products, action.payload.id];
+
+  localStorage.setItem("cartProducts", newProducts);
 
   //   Return only unique ids and prevent duplicates
   return {

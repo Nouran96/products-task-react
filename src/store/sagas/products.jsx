@@ -1,6 +1,10 @@
 import { call, put } from "redux-saga/effects";
-import { createProductsAddAction } from "../actions/products";
-import { fetchProducts } from "../endpoints/products";
+import {
+  createProductsAddAction,
+  createProductsFetchErrorAction,
+  createSingleProductAddAction,
+} from "../actions/products";
+import { fetchProducts, fetchSingleProduct } from "../endpoints/products";
 
 export function* handleFetchProducts() {
   try {
@@ -8,6 +12,16 @@ export function* handleFetchProducts() {
 
     yield put(createProductsAddAction(products));
   } catch (error) {
-    console.log(error);
+    yield put(createProductsFetchErrorAction(error));
+  }
+}
+
+export function* handleFetchSingleProduct(action) {
+  try {
+    const product = yield call(fetchSingleProduct, action.payload.id);
+
+    yield put(createSingleProductAddAction(product));
+  } catch (error) {
+    yield put(createProductsFetchErrorAction(error));
   }
 }
