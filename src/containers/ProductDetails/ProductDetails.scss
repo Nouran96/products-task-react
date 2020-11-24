@@ -8,4 +8,15 @@
   .product-price {
     color: var(--product-price-color);
   }
+
+  .product-quantity-container {
+    .product-quantity,
+    .quantity-btn {
+      font-size: 1.2em;
+    }
+
+    .quantity-btn {
+      min-width: 30px;
+    }
+  }
 }
