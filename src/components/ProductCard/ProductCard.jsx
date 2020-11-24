@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 const ProductCard = ({ product, onAddingToCart, addedToCart }) => {
   const handleClick = (e) => {
     e.preventDefault();
-    onAddingToCart(product.id);
+    onAddingToCart(product);
   };
 
   return (
@@ -47,7 +47,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onAddingToCart: (id) => dispatch(createAddProductToOrderAction(id)),
+  onAddingToCart: (product) => dispatch(createAddProductToOrderAction(product)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);

@@ -10,8 +10,8 @@ const INITIAL_STATE = {
 
 const addProductToOrder = (state, action) => {
   const newProducts = [
-    ...state.products.filter((pro) => pro.id !== action.payload.id),
-    { id: action.payload.id, quantity: 1 },
+    ...state.products.filter((pro) => pro.id !== action.payload.product.id),
+    { ...action.payload.product, quantity: 1 },
   ];
 
   localStorage.setItem("cartProducts", JSON.stringify(newProducts));

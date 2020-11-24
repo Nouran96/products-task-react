@@ -4,10 +4,10 @@ import {
   DECREMENT_QUANTITY,
 } from "../types/order";
 
-export const createAddProductToOrderAction = (id) => ({
+export const createAddProductToOrderAction = (product) => ({
   type: ADD_PRODUCT_TO_ORDER,
   payload: {
-    id,
+    product,
   },
 });
 

@@ -6,7 +6,7 @@
   max-width: var(--product-details-body-width);
 
   .product-price {
-    color: var(--product-price-color);
+    color: var(--secondary-color);
   }
 
   .product-quantity-container {
@@ -16,7 +16,7 @@
     }
 
     .quantity-btn {
-      min-width: 30px;
+      min-width: var(--quantity-btn-width);
     }
   }
 }
