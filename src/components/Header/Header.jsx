@@ -9,9 +9,15 @@ import { connect } from "react-redux";
 import {
   createIncrementQuantityAction,
   createDecrementQuantityAction,
+  createDeleteProductFromOrderAction,
 } from "../../store/actions/order";
 
-const Header = ({ selectedProducts, incrementQuantity, decrementQuantity }) => {
+const Header = ({
+  selectedProducts,
+  incrementQuantity,
+  decrementQuantity,
+  deleteProduct,
+}) => {
   return (
     <nav className="navbar navbar-light bg-light justify-content-between">
       <a className="navbar-brand" href="#">
@@ -48,7 +54,7 @@ const Header = ({ selectedProducts, incrementQuantity, decrementQuantity }) => {
                           -
                         </button>
                         <button
-                          //   onClick={}
+                          onClick={(e) => deleteProduct(product.id)}
                           className="quantity-btn btn btn-danger btn-sm mr-3"
                         >
                           <FontAwesomeIcon icon={faTrash} />
@@ -59,7 +65,9 @@ const Header = ({ selectedProducts, incrementQuantity, decrementQuantity }) => {
                 ))}
               </React.Fragment>
             ) : (
-              <Dropdown.Header>No Products in Cart</Dropdown.Header>
+              <Dropdown.Header className="text-center">
+                No Products in Cart
+              </Dropdown.Header>
             )}
           </Dropdown.Menu>
         </Dropdown>
@@ -82,6 +90,7 @@ const Header = ({ selectedProducts, incrementQuantity, decrementQuantity }) => {
 const mapDispatchToProps = (dispatch) => ({
   incrementQuantity: (id) => dispatch(createIncrementQuantityAction(id)),
   decrementQuantity: (id) => dispatch(createDecrementQuantityAction(id)),
+  deleteProduct: (id) => dispatch(createDeleteProductFromOrderAction(id)),
 });
 
 const mapStateToProps = ({ orderState }) => ({

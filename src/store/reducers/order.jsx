@@ -2,6 +2,7 @@ const {
   ADD_PRODUCT_TO_ORDER,
   INCREMENT_QUANTITY,
   DECREMENT_QUANTITY,
+  DELETE_PRODUCT_FROM_ORDER,
 } = require("../types/order");
 
 const INITIAL_STATE = {
@@ -21,16 +22,25 @@ const addProductToOrder = (state, action) => {
   };
 };
 
+const deleteProductFromOrder = (state, action) => ({
+  products: state.products.filter(
+    (product) => product.id !== action.payload.id
+  ),
+});
+
 const incrementQuantity = (state, action) => {
   const product = state.products.find(
     (product) => product.id === action.payload.id
   );
 
+  const productIndex = state.products.indexOf(product);
+
   product.quantity = ++product.quantity;
 
   const newProducts = [
-    ...state.products.filter((pro) => pro.id !== product.id),
+    ...state.products.slice(0, productIndex),
     { ...product },
+    ...state.products.slice(productIndex + 1),
   ];
 
   localStorage.setItem("cartProducts", JSON.stringify(newProducts));
@@ -45,11 +55,14 @@ const decrementQuantity = (state, action) => {
     (product) => product.id === action.payload.id
   );
 
+  const productIndex = state.products.indexOf(product);
+
   if (product.quantity > 1) product.quantity = --product.quantity;
 
   const newProducts = [
-    ...state.products.filter((pro) => pro.id !== product.id),
+    ...state.products.slice(0, productIndex),
     { ...product },
+    ...state.products.slice(productIndex + 1),
   ];
 
   localStorage.setItem("cartProducts", JSON.stringify(newProducts));
@@ -63,6 +76,8 @@ const orderReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_PRODUCT_TO_ORDER:
       return addProductToOrder(state, action);
+    case DELETE_PRODUCT_FROM_ORDER:
+      return deleteProductFromOrder(state, action);
     case INCREMENT_QUANTITY:
       return incrementQuantity(state, action);
     case DECREMENT_QUANTITY:
