@@ -16,6 +16,13 @@ const OrderReview = ({
   decrementQuantity,
   deleteProduct,
 }) => {
+  const calculateTotal = () => {
+    // Reduce function takes initial value as the second argument
+    return selectedProducts
+      .reduce((acc, current) => acc + current.price * current.quantity, 0)
+      .toFixed(2);
+  };
+
   return (
     <div className="container mt-5">
       <h2 className="text-center mb-5">Your Order</h2>
@@ -58,7 +65,7 @@ const OrderReview = ({
                       {product.quantity}
                     </span>
                     <button
-                      onClick={(e) => incrementQuantity(product.id)}
+                      onClick={(e) => decrementQuantity(product.id)}
                       className="quantity-btn btn btn-dark btn-sm mr-3"
                     >
                       -
@@ -83,6 +90,12 @@ const OrderReview = ({
           )}
         </tbody>
       </Table>
+
+      <div className="d-flex flex-column align-items-end order-total-container my-3">
+        <span className="order-total mb-2">Total Price</span>
+        <span className="product-price mb-2">${calculateTotal()}</span>
+        <button className="btn btn-sm btn-dark">Order Now</button>
+      </div>
     </div>
   );
 };

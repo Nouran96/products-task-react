@@ -11,6 +11,7 @@ import {
   createDeleteProductFromOrderAction,
 } from "../../store/actions/order";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Header = ({
   selectedProducts,
@@ -18,6 +19,8 @@ const Header = ({
   decrementQuantity,
   deleteProduct,
 }) => {
+  const dropdownRef = React.createRef();
+
   return (
     <nav className="navbar navbar-light bg-light justify-content-between">
       <Link className="navbar-brand" to="/">
@@ -30,7 +33,7 @@ const Header = ({
             <FontAwesomeIcon icon={faShoppingCart} />
           </Dropdown.Toggle>
 
-          <Dropdown.Menu className="selected-products-menu">
+          <Dropdown.Menu className="selected-products-menu" ref={dropdownRef}>
             {selectedProducts && selectedProducts.length > 0 ? (
               <React.Fragment>
                 <Dropdown.Header>Your Selected Products</Dropdown.Header>
@@ -67,6 +70,7 @@ const Header = ({
                   <Link
                     to="/order"
                     className="btn btn-dark btn-sm w-100 review-order-btn"
+                    onClick={() => dropdownRef.current.classList.toggle("show")}
                   >
                     Review Order
                   </Link>
@@ -82,7 +86,7 @@ const Header = ({
 
         <Dropdown>
           <Dropdown.Toggle variant="light">
-            <img className="img-fluid" src={avatar} alt="Profile Image" />
+            <img className="img-fluid" src={avatar} alt="Profile" />
           </Dropdown.Toggle>
 
           <Dropdown.Menu>

@@ -33,11 +33,17 @@ const addProductToOrder = (state, action) => {
 };
 
 // Delete Product
-const deleteProductFromOrder = (state, action) => ({
-  products: state.products.filter(
+const deleteProductFromOrder = (state, action) => {
+  const newProducts = state.products.filter(
     (product) => product.id !== action.payload.id
-  ),
-});
+  );
+
+  localStorage.setItem("cartProducts", JSON.stringify(newProducts));
+
+  return {
+    products: newProducts,
+  };
+};
 
 // Increment Product
 const incrementQuantity = (state, action) => {
