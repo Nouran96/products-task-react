@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import "./OrderReview.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 import {
   createIncrementQuantityAction,
@@ -30,7 +31,7 @@ const OrderReview = ({
         <thead>
           <tr>
             <th>Product</th>
-            <th>Price</th>
+            <th>Price Per Item</th>
             <th>Quantity</th>
             <th>Total</th>
             <th></th>
@@ -94,7 +95,9 @@ const OrderReview = ({
       <div className="d-flex flex-column align-items-end order-total-container my-3">
         <span className="order-total mb-2">Total Price</span>
         <span className="product-price mb-2">${calculateTotal()}</span>
-        <button className="btn btn-sm btn-dark">Order Now</button>
+        <Link to="order-form" className="btn btn-sm btn-dark">
+          Order Now
+        </Link>
       </div>
     </div>
   );

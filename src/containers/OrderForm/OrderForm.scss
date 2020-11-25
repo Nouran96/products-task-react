@@ -1,0 +1,20 @@
+form {
+  width: 60%;
+  margin: auto;
+
+  .error-msg {
+    color: var(--red-color);
+    font-weight: bold;
+    font-size: 0.9em;
+  }
+
+  .submit-msg {
+    color: var(--green-color);
+    font-weight: bold;
+    font-size: 0.9em;
+  }
+
+  @media (max-width: 768px) {
+    width: 85%;
+  }
+}

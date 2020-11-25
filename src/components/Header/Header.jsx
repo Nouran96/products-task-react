@@ -23,7 +23,7 @@ const Header = ({
 
   return (
     <nav className="navbar navbar-light bg-light justify-content-between">
-      <Link className="navbar-brand" to="/">
+      <Link className="navbar-brand" to="/products">
         Products List
       </Link>
 

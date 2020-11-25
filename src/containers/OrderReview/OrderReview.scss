@@ -6,10 +6,6 @@
     .product-image-container {
       width: 150px;
     }
-
-    &.product-quantity {
-      padding-left: 2.5rem;
-    }
   }
 }
 
@@ -19,7 +15,7 @@
     font-size: 1.5em;
   }
 
-  button {
+  a {
     font-weight: bold;
     padding: 0.5rem 1rem;
     font-size: 1.2em;

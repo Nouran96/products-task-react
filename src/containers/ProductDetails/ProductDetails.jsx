@@ -69,8 +69,10 @@ class ProductDetails extends Component {
                 <button
                   className="btn btn-primary"
                   onClick={() => {
-                    product.quantity = this.state.quantity;
-                    addProductToCart(product);
+                    if (product.quantity !== this.state.quantity) {
+                      product.quantity = this.state.quantity;
+                      addProductToCart(product);
+                    }
                   }}
                 >
                   Add To Cart
