@@ -42,6 +42,7 @@ const OrderForm = ({ history }) => {
               </label>
               <div className="col-md-9 px-0 d-flex flex-column">
                 <Field
+                  id="address"
                   name="address"
                   className="form-control"
                   placeholder="Building 30, New Cairo, Egypt"
@@ -61,6 +62,7 @@ const OrderForm = ({ history }) => {
               </label>
               <div className="col-md-9 px-0 d-flex flex-column">
                 <Field
+                  id="phone"
                   name="phone"
                   className="form-control"
                   placeholder="01243452465"
@@ -80,6 +82,8 @@ const OrderForm = ({ history }) => {
               </label>
               <div className="col-md-9 px-0 d-flex flex-column">
                 <Field
+                  id="email"
+                  type="email"
                   name="email"
                   className="form-control"
                   placeholder="mail@mail.com"
