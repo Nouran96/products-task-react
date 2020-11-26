@@ -1,6 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./OrderForm.scss";
+import FormInput from "../../components/FormInput/FormInput";
 
 const OrderForm = ({ history }) => {
   const submitForm = (values, { setSubmitting, setStatus }) => {
@@ -31,70 +32,24 @@ const OrderForm = ({ history }) => {
         validationSchema={orderValidationSchema}
         onSubmit={submitForm}
       >
-        {({ status }) => (
+        {({ status, isValid, isSubmitting }) => (
           <Form className="my-5">
-            <div className="form-group row align-items-baseline">
-              <label
-                htmlFor="address"
-                className="col-md-3 text-md-right text-center"
-              >
-                Address
-              </label>
-              <div className="col-md-9 px-0 d-flex flex-column">
-                <Field
-                  id="address"
-                  name="address"
-                  className="form-control"
-                  placeholder="Building 30, New Cairo, Egypt"
-                />
-                <ErrorMessage name="address">
-                  {(msg) => <div className="mt-2 error-msg">{msg}</div>}
-                </ErrorMessage>
-              </div>
-            </div>
+            <FormInput
+              name="address"
+              label="Address"
+              placeholder="Building 30, New Cairo, Egypt"
+            />
 
-            <div className="form-group row align-items-baseline">
-              <label
-                htmlFor="phone"
-                className="col-md-3 text-md-right text-center"
-              >
-                Phone
-              </label>
-              <div className="col-md-9 px-0 d-flex flex-column">
-                <Field
-                  id="phone"
-                  name="phone"
-                  className="form-control"
-                  placeholder="01243452465"
-                />
-                <ErrorMessage name="phone">
-                  {(msg) => <div className="mt-2 error-msg">{msg}</div>}
-                </ErrorMessage>
-              </div>
-            </div>
+            <FormInput name="phone" label="Phone" placeholder="12345678901" />
 
-            <div className="form-group row align-items-baseline">
-              <label
-                htmlFor="email"
-                className="col-md-3 text-md-right text-center"
-              >
-                Email
-              </label>
-              <div className="col-md-9 px-0 d-flex flex-column">
-                <Field
-                  id="email"
-                  type="email"
-                  name="email"
-                  className="form-control"
-                  placeholder="mail@mail.com"
-                />
-                <ErrorMessage name="email">
-                  {(msg) => <div className="mt-2 error-msg">{msg}</div>}
-                </ErrorMessage>
-              </div>
-            </div>
+            <FormInput name="email" label="Email" placeholder="mail@mail.com" />
+
             <div className="form-group row justify-content-end mt-5">
-              <button type="submit" className="btn btn-dark btn-sm">
+              <button
+                type="submit"
+                disabled={!isValid || isSubmitting}
+                className="btn btn-dark btn-sm"
+              >
                 Submit
               </button>
             </div>
