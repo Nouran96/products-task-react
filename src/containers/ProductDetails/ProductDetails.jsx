@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { createSingleProductFetchAction } from "../../store/actions/products";
 import { createAddProductToOrderAction } from "../../store/actions/order";
 import { getProductQuantity } from "../../store/selectors/order";
+import ActionButton from "../../components/ActionButton/ActionButton";
 import "./ProductDetails.scss";
 
 class ProductDetails extends Component {
@@ -50,33 +51,32 @@ class ProductDetails extends Component {
               <div className="d-flex flex-column flex-grow-1 justify-content-around">
                 <div className="product-quantity-container d-flex align-items-baseline">
                   <h5 className="mr-3">Quantity: </h5>
-                  <button
+                  <ActionButton
+                    label="+"
+                    variant="dark"
+                    className="quantity-btn mr-3"
                     onClick={() => this.incrementQuantity()}
-                    className="quantity-btn btn btn-dark btn-sm mr-3"
-                  >
-                    +
-                  </button>
+                  />
                   <span className="product-quantity mr-3">
                     {this.state.quantity}
                   </span>
-                  <button
+                  <ActionButton
+                    label="-"
+                    variant="dark"
+                    className="quantity-btn mr-3"
                     onClick={() => this.decrementQuantity()}
-                    className="quantity-btn btn btn-dark btn-sm mr-3"
-                  >
-                    -
-                  </button>
+                  />
                 </div>
-                <button
-                  className="btn btn-primary"
+                <ActionButton
+                  label="Add to Cart"
+                  variant="primary"
                   onClick={() => {
                     if (product.quantity !== this.state.quantity) {
                       product.quantity = this.state.quantity;
                       addProductToCart(product);
                     }
                   }}
-                >
-                  Add To Cart
-                </button>
+                />
               </div>
             </div>
           </div>

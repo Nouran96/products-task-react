@@ -7,3 +7,12 @@
   color: var(--secondary-color);
   font-weight: bold;
 }
+
+a {
+  color: var(--main-text-color);
+
+  &:hover {
+    text-decoration: none;
+    color: var(--main-text-color);
+  }
+}

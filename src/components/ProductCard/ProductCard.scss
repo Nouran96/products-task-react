@@ -1,13 +1,10 @@
 .product-card {
   width: var(--card-width);
   min-height: var(--card-max-height);
-  color: var(--main-text-color);
   border-radius: 8px;
   box-shadow: 2px 3px 4px 4px #eee;
 
   &:hover {
-    text-decoration: none;
-    color: var(--main-text);
     transform: scale(1.1);
   }
 

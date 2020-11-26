@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./OrderForm.scss";
 import FormInput from "../../components/FormInput/FormInput";
+import ActionButton from "../../components/ActionButton/ActionButton";
 
 const OrderForm = ({ history }) => {
   const submitForm = (values, { setSubmitting, setStatus }) => {
@@ -45,13 +46,12 @@ const OrderForm = ({ history }) => {
             <FormInput name="email" label="Email" placeholder="mail@mail.com" />
 
             <div className="form-group row justify-content-end mt-5">
-              <button
+              <ActionButton
+                label="Submit"
                 type="submit"
                 disabled={!isValid || isSubmitting}
-                className="btn btn-dark btn-sm"
-              >
-                Submit
-              </button>
+                variant="dark"
+              />
             </div>
 
             {status === "submitted" && (

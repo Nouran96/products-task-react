@@ -12,6 +12,7 @@ import {
 } from "../../store/actions/order";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import ActionButton from "../ActionButton/ActionButton";
 
 const Header = ({
   selectedProducts,
@@ -44,24 +45,25 @@ const Header = ({
                         {product.title} ({product.quantity})
                       </span>
                       <div className="buttons-container d-flex justify-content-lg-end justify-content-center flex-grow-1">
-                        <button
+                        <ActionButton
+                          label="+"
+                          variant="dark"
+                          className="quantity-btn mr-3"
                           onClick={(e) => incrementQuantity(product.id)}
-                          className="quantity-btn btn btn-dark btn-sm mr-3"
-                        >
-                          +
-                        </button>
-                        <button
+                        />
+                        <ActionButton
+                          label="-"
+                          variant="dark"
+                          className="quantity-btn mr-3"
                           onClick={(e) => decrementQuantity(product.id)}
-                          className="quantity-btn btn btn-dark btn-sm mr-3"
-                        >
-                          -
-                        </button>
-                        <button
+                        />
+                        <ActionButton
+                          variant="danger"
+                          className="quantity-btn mr-3"
                           onClick={(e) => deleteProduct(product.id)}
-                          className="quantity-btn btn btn-danger btn-sm mr-3"
                         >
                           <FontAwesomeIcon icon={faTrash} />
-                        </button>
+                        </ActionButton>
                       </div>
                     </div>
                   </div>

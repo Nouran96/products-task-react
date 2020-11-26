@@ -10,6 +10,7 @@ import {
   createDecrementQuantityAction,
   createDeleteProductFromOrderAction,
 } from "../../store/actions/order";
+import ActionButton from "../../components/ActionButton/ActionButton";
 
 const OrderReview = ({
   selectedProducts,
@@ -42,47 +43,50 @@ const OrderReview = ({
             selectedProducts.map((product) => (
               <tr key={product.id}>
                 <td>
-                  <div className="d-flex align-items-center">
-                    <div className="product-image-container">
-                      <img
-                        className="img-fluid"
-                        src={product.image}
-                        alt={product.title}
-                      />
+                  <Link to={`products/${product.id}`}>
+                    <div className="d-flex align-items-center">
+                      <div className="product-image-container">
+                        <img
+                          className="img-fluid"
+                          src={product.image}
+                          alt={product.title}
+                        />
+                      </div>
+                      <span className="ml-5">{product.title}</span>
                     </div>
-                    <span className="ml-5">{product.title}</span>
-                  </div>
+                  </Link>
                 </td>
                 <td className="product-price">${product.price}</td>
                 <td className="product-quantity">
                   <div className="product-quantity-container d-flex align-items-baseline">
-                    <button
+                    <ActionButton
+                      label="+"
+                      variant="dark"
+                      className="quantity-btn mr-3"
                       onClick={(e) => incrementQuantity(product.id)}
-                      className="quantity-btn btn btn-dark btn-sm mr-3"
-                    >
-                      +
-                    </button>
+                    />
                     <span className="product-quantity mr-3">
                       {product.quantity}
                     </span>
-                    <button
+                    <ActionButton
+                      label="-"
+                      variant="dark"
+                      className="quantity-btn mr-3"
                       onClick={(e) => decrementQuantity(product.id)}
-                      className="quantity-btn btn btn-dark btn-sm mr-3"
-                    >
-                      -
-                    </button>
+                    />
                   </div>
                 </td>
                 <td className="product-price">
                   ${product.quantity * product.price}
                 </td>
                 <td>
-                  <button
+                  <ActionButton
+                    variant="danger"
+                    className="quantity-btn mr-3"
                     onClick={(e) => deleteProduct(product.id)}
-                    className="quantity-btn btn btn-danger btn-sm mr-3"
                   >
                     <FontAwesomeIcon icon={faTrash} />
-                  </button>
+                  </ActionButton>
                 </td>
               </tr>
             ))

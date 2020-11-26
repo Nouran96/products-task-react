@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./ProductCard.scss";
 import { createAddProductToOrderAction } from "../../store/actions/order";
 import { isProductInCart } from "../../store/selectors/order";
+import ActionButton from "../ActionButton/ActionButton";
 import { connect } from "react-redux";
 
 const ProductCard = ({ product, onAddingToCart, addedToCart }) => {
@@ -29,13 +30,12 @@ const ProductCard = ({ product, onAddingToCart, addedToCart }) => {
 
             <p className="card-text">{product.category}</p>
           </div>
-          <button
-            className="btn btn-primary"
+          <ActionButton
+            label="Add to Cart"
+            variant="primary"
             onClick={handleClick}
             disabled={addedToCart}
-          >
-            Add To Cart
-          </button>
+          />
         </div>
       </div>
     </Link>
